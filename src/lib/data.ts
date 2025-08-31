@@ -46,7 +46,7 @@ export const EXPERIENCE = [
     role: "Academic Tutor – Calculus & Computational Thinking",
     period: "August 2025 – Present",
     description:
-      "Memberikan bimbingan dan pengajaran untuk mahasiswa tingkat pertama (TPB) dalam mata kuliah fundamental. Bertanggung jawab untuk menjelaskan konsep-konsep inti, membantu dalam pemecahan masalah, dan memperkuat pemahaman algoritmik serta matematis siswa.",
+      "Providing guidance and instruction for first-year students (TPB) in fundamental courses. Responsible for explaining core concepts, assisting in problem-solving, and strengthening students’ algorithmic and mathematical understanding.",
     stack: [
       "Calculus",
       "Logic",
