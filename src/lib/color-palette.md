@@ -1,0 +1,5 @@
+Color Palette
+#27374D
+#526D82
+#9DB2BF
+#DDE6ED

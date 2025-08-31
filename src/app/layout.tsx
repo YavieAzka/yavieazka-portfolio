@@ -1,20 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Yavie Azka Portfolio",
-  description: "Portfolio of a 2nd-semester Informatics student",
+  description: "Portfolio of Yavie Azka Putra Araly",
 };
 
 export default function RootLayout({
@@ -25,7 +17,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className} bg-[#30354c] text-white`}
+        style={{
+          backgroundImage: `
+            radial-gradient(circle 1000px at center top, #0a0a0a 0%, #0a0a0a 70%),
+            url('/background-pattern.png')
+          `,
+          backgroundRepeat: "repeat",
+          backgroundSize: "auto, 50px 50px",
+          backgroundAttachment: "fixed", // Opsional: membuat background tidak ikut scroll
+        }}
       >
         {children}
       </body>

@@ -9,12 +9,13 @@ const SkillCategory = ({
   skills: string[];
 }) => (
   <div>
-    <h3 className="text-lg font-semibold text-cyan-400 mb-3">{title}</h3>
+    {/* PERUBAHAN DI SINI */}
+    <h3 className="text-lg font-semibold text-brand-light mb-3">{title}</h3>
     <div className="flex flex-wrap gap-2">
       {skills.map((skill) => (
         <span
           key={skill}
-          className="bg-neutral-800 text-neutral-300 text-sm px-4 py-2 rounded-md"
+          className="bg-neutral-800 text-300 text-[#698ce2] text-sm px-4 py-2 rounded-md"
         >
           {skill}
         </span>

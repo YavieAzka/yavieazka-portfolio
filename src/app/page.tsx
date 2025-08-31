@@ -7,12 +7,11 @@ import Skills from "./components/Skills";
 
 export default function Home() {
   return (
-    // Pindahkan style background ke sini, agar tidak berulang
-    <main className="bg-[#0a0a0a] text-white">
+    <main className="bg-[#30354c] text-white">
       <div
         style={{
           backgroundImage: `
-            radial-gradient(circle at center top, #1C323B 0%, #0a0a0a 70%),
+            radial-gradient(circle at center top, #0a0a0a 0%, #0a0a0a 70%),
             url('/background-pattern.png')
           `,
           backgroundRepeat: "repeat",

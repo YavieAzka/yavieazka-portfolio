@@ -8,11 +8,11 @@ export default function Experience() {
         {EXPERIENCE.map((exp, index) => (
           <div
             key={index}
-            className="p-6 border border-neutral-800 rounded-lg bg-neutral-900/50 shadow-lg"
+            className="p-6 border border-neutral-800 rounded-lg bg-neutral-900/50 shadow-lg mb-4"
           >
             <div className="flex justify-between items-start mb-2">
               <div>
-                <h3 className="text-xl font-bold text-cyan-400">{exp.role}</h3>
+                <h3 className="text-xl font-bold text-[#F8F9FE]">{exp.role}</h3>
                 <p className="text-neutral-400">{exp.company}</p>
               </div>
               <span className="text-sm text-neutral-500">{exp.period}</span>
@@ -22,7 +22,7 @@ export default function Experience() {
               {exp.stack.map((tech) => (
                 <span
                   key={tech}
-                  className="bg-neutral-800 text-cyan-300 text-xs font-medium px-3 py-1 rounded-full"
+                  className="bg-neutral-800 text-300 text-[#698ce2] text-xs font-medium px-3 py-1 rounded-full"
                 >
                   {tech}
                 </span>

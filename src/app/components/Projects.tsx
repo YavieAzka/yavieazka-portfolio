@@ -10,7 +10,8 @@ export default function Projects() {
             key={index}
             className="p-6 border border-neutral-800 rounded-lg bg-neutral-900/50 flex flex-col"
           >
-            <h3 className="text-lg font-bold text-cyan-400 mb-2">
+            {/* PERUBAHAN DI SINI */}
+            <h3 className="text-lg font-bold text-[#F8F9FE] mb-2">
               {project.title}
             </h3>
             <p className="text-neutral-400 flex-grow mb-4">
@@ -20,7 +21,7 @@ export default function Projects() {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="bg-neutral-800 text-cyan-300 text-xs font-medium px-3 py-1 rounded-full"
+                  className="bg-neutral-800 text-[#698ce2] text-xs font-medium px-3 py-1 rounded-full"
                 >
                   {tag}
                 </span>

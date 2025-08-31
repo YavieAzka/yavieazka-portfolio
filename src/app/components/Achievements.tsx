@@ -12,7 +12,11 @@ export default function Achievements() {
               key={index}
               className="flex items-start gap-4 p-4 border border-neutral-800 rounded-lg bg-neutral-900/50"
             >
-              <Trophy className="text-cyan-400 mt-1 flex-shrink-0" size={20} />
+              {/* PERUBAHAN DI SINI */}
+              <Trophy
+                className="text-brand-accent mt-1 flex-shrink-0"
+                size={20}
+              />
               <div>
                 <p className="font-semibold text-neutral-200">
                   {ach.award} - {ach.competition}

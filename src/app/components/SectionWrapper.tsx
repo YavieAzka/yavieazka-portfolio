@@ -17,7 +17,7 @@ export default function SectionWrapper({
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
           {title}
         </h2>
-        <div className="w-20 h-1 bg-cyan-400 mx-auto mt-4 rounded"></div>
+        <div className="w-20 h-1 bg-brand-accent mx-auto mt-4 rounded"></div>
       </div>
       {children}
     </section>

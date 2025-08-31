@@ -41,6 +41,21 @@ export const SKILLS = {
 
 export const EXPERIENCE = [
   {
+    company: "MasterTPB",
+    location: "Bandung, West Java",
+    role: "Academic Tutor – Calculus & Computational Thinking",
+    period: "August 2025 – Present",
+    description:
+      "Memberikan bimbingan dan pengajaran untuk mahasiswa tingkat pertama (TPB) dalam mata kuliah fundamental. Bertanggung jawab untuk menjelaskan konsep-konsep inti, membantu dalam pemecahan masalah, dan memperkuat pemahaman algoritmik serta matematis siswa.",
+    stack: [
+      "Calculus",
+      "Logic",
+      "Algorithm Design",
+      "Tutoring",
+      "Public Speaking",
+    ],
+  },
+  {
     company: "PT. Anugerah Wahyudi Sejahtera",
     location: "West Sumatera",
     role: "Lead Full-Stack Developer (Independent Project)",
