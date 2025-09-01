@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react"; // 1. Impor useCallback
 
 const CURSOR_SIZE = 8;
 const FOLLOW_RING_SIZES = [20, 30, 40];
@@ -10,29 +10,39 @@ export default function MultiFollowCursor() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const followRingXs = FOLLOW_RING_SIZES.map((_, index) => {
-    const stiffness = 400 - index * 100;
-    const damping = 30 + index * 10;
-    return useSpring(mouseX, { stiffness, damping });
-  });
+  // 2. Panggil useSpring di level teratas untuk setiap lingkaran
+  // Lingkaran 1 (terkecil)
+  const ring1X = useSpring(mouseX, { stiffness: 400, damping: 30 });
+  const ring1Y = useSpring(mouseY, { stiffness: 400, damping: 30 });
 
-  const followRingYs = FOLLOW_RING_SIZES.map((_, index) => {
-    const stiffness = 400 - index * 100;
-    const damping = 30 + index * 10;
-    return useSpring(mouseY, { stiffness, damping });
-  });
+  // Lingkaran 2
+  const ring2X = useSpring(mouseX, { stiffness: 300, damping: 40 });
+  const ring2Y = useSpring(mouseY, { stiffness: 300, damping: 40 });
 
-  const handleMouseMove = (event: MouseEvent) => {
-    mouseX.set(event.clientX);
-    mouseY.set(event.clientY);
-  };
+  // Lingkaran 3 (terbesar)
+  const ring3X = useSpring(mouseX, { stiffness: 200, damping: 50 });
+  const ring3Y = useSpring(mouseY, { stiffness: 200, damping: 50 });
+
+  // Simpan dalam array agar mudah di-loop saat rendering
+  const followRingXs = [ring1X, ring2X, ring3X];
+  const followRingYs = [ring1Y, ring2Y, ring3Y];
+
+  // 3. Bungkus handleMouseMove dengan useCallback
+  const handleMouseMove = useCallback(
+    (event: MouseEvent) => {
+      mouseX.set(event.clientX);
+      mouseY.set(event.clientY);
+    },
+    [mouseX, mouseY]
+  ); // Dependensi untuk useCallback
 
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [handleMouseMove]); // 4. Tambahkan handleMouseMove ke dependency array
 
   return (
     <>
@@ -48,10 +58,11 @@ export default function MultiFollowCursor() {
         }}
       />
 
+      {/* Lingkaran Pengikut */}
       {FOLLOW_RING_SIZES.map((size, index) => (
         <motion.div
           key={index}
-          className="fixed z-[9999] rounded-full border-2 pointer-events-none"
+          className="fixed z-[9999] rounded-full border pointer-events-none"
           style={{
             left: followRingXs[index],
             top: followRingYs[index],

@@ -1,9 +1,9 @@
 "use client";
 
-import * as motion from "motion/react-client";
+import { motion, Variants } from "framer-motion"; // 1. Impor tipe 'Variants'
 
-// Definisikan varian untuk container dan setiap kata
-const containerVariants = {
+// 2. Tambahkan anotasi tipe ': Variants' di sini
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: (i = 1) => ({
     opacity: 1,
@@ -11,7 +11,8 @@ const containerVariants = {
   }),
 };
 
-const childVariants = {
+// 3. Tambahkan anotasi tipe ': Variants' di sini juga
+const childVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
@@ -45,13 +46,13 @@ export default function AnimatedText({ text, className }: AnimatedTextProps) {
       className={className}
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible" // Memicu animasi saat komponen masuk ke viewport
-      viewport={{ once: false, amount: 0.5 }} // Animasi hanya berjalan sekali
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.5 }}
     >
       {words.map((word, index) => (
         <motion.span
           key={index}
-          //variants={childVariants}
+          variants={childVariants}
           style={{ display: "inline-block", marginRight: "0.25em" }}
         >
           {word}
