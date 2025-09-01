@@ -62,7 +62,7 @@ export default function MultiFollowCursor() {
       {FOLLOW_RING_SIZES.map((size, index) => (
         <motion.div
           key={index}
-          className="fixed z-[9999] rounded-full border pointer-events-none"
+          className="fixed z-[9999] rounded-full border-2 pointer-events-none"
           style={{
             left: followRingXs[index],
             top: followRingYs[index],
