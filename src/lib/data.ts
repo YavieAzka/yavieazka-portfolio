@@ -1,4 +1,6 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+// src/lib/data.ts
+
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 
 export const METADATA = {
   title: "Yavie Azka Putra Araly | Computer Science Student",
@@ -28,6 +30,11 @@ export const PROFILE = {
       url: "https://github.com/yavieazka", // Asumsi, ganti jika perlu
       icon: Github,
     },
+    {
+      name: "Twitter",
+      url: "https://x.com/yveakzontwt", // <-- Ganti dengan handle Twitter Anda
+      icon: Twitter,
+    },
   ],
 };
 
@@ -43,8 +50,8 @@ export const EXPERIENCE = [
   {
     company: "MasterTPB",
     location: "Bandung, West Java",
-    role: "Academic Tutor – Calculus & Computational Thinking",
-    period: "August 2025 – Present",
+    role: "Academic Tutor - Calculus & Computational Thinking",
+    period: "August 2025 - Present",
     description:
       "Providing guidance and instruction for first-year students (TPB) in fundamental courses. Responsible for explaining core concepts, assisting in problem-solving, and strengthening students’ algorithmic and mathematical understanding.",
     stack: [
