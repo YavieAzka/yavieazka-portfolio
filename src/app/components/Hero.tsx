@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion"; // 1. Pastikan motion sudah diimpor
 
 interface Greeting {
   text: string;
@@ -18,8 +19,29 @@ const greetings: Greeting[] = [
   { text: "مرحبا", lang: "Arabic" },
 ];
 
+// 2. Definisikan varian animasi untuk container dan setiap huruf
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.5, // Mulai animasi huruf setelah 0.5 detik
+      staggerChildren: 0.05, // Jeda 0.05 detik antar huruf
+    },
+  },
+};
+
+const childVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
+
 export default function Hero() {
   const [currentGreeting, setCurrentGreeting] = useState(0);
+
+  // 3. Pecah teks menjadi array karakter
+  const iAmText = "I am ".split("");
+  const nameText = "Yavie Azka.".split("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,10 +60,29 @@ export default function Hero() {
         >
           {greetings[currentGreeting].text}
         </h1>
-        <p className="text-2xl sm:text-3xl font-medium font-inter drop-shadow-md">
-          <span>I am </span>
-          <span className="gradient-text">Yavie Azka.</span>
-        </p>
+
+        {/* 4. Terapkan animasi menggunakan motion component */}
+        <motion.p
+          className="text-2xl sm:text-3xl font-medium font-inter drop-shadow-md"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Render "I am " */}
+          {iAmText.map((char, index) => (
+            <motion.span key={index} variants={childVariants}>
+              {char}
+            </motion.span>
+          ))}
+          {/* Render "Yavie Azka." dengan style berbeda */}
+          <span className="gradient-text">
+            {nameText.map((char, index) => (
+              <motion.span key={index} variants={childVariants}>
+                {char}
+              </motion.span>
+            ))}
+          </span>
+        </motion.p>
       </div>
     </section>
   );
