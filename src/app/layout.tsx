@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import AnimatedBackground from "./components/AnimatedBackground";
+import MultiFollowCursor from "./components/MultiFollowCursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-transparent text-white`}>
+      <body
+        className={`${inter.className} bg-transparent text-white cursor-none`}
+      >
+        <MultiFollowCursor />
         {/* Lapisan 1: Background Animasi (di paling bawah) */}
         <AnimatedBackground />
 
