@@ -21,11 +21,10 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.name}
-              // 2. Hapus komentar (aktifkan kembali) properti animasi
               whileHover={{ scale: 1.2, y: -5 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="text-neutral-400 hover:text-brand-light"
+              className="text-neutral-400 hover:text-[#698ce2]"
             >
               <link.icon size={28} />
             </motion.a>
