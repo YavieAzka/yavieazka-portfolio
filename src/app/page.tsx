@@ -7,17 +7,8 @@ import Skills from "./components/Skills";
 
 export default function Home() {
   return (
-    <main className="bg-[#30354c] text-white">
-      <div
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at center top, #0a0a0a 0%, #0a0a0a 70%),
-            url('/background-pattern.png')
-          `,
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto, 50px 50px",
-        }}
-      >
+    <main className=" text-white">
+      <div>
         <Hero />
         <About />
         <Experience />

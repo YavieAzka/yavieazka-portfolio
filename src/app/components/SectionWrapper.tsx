@@ -12,7 +12,7 @@ export default function SectionWrapper({
   children,
 }: SectionWrapperProps) {
   return (
-    <section id={id} className="py-20 px-4">
+    <section id={id} className="py-20 px-4 scroll-mt-28">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
           {title}
