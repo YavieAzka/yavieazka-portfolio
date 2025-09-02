@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useCursorContext } from "@/context/CursorContext";
 
 const navLinks = [
   { name: "About", hash: "#about" },
@@ -31,14 +32,19 @@ const navLinkVariants = {
 };
 
 export default function Header() {
+  const { setHoveredElement, introPhase } = useCursorContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="z-[999] relative">
       <motion.div
-        className="fixed top-4 left-1/2 h-[4.5rem] w-[calc(100%-2rem)] rounded-2xl border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:bg-950 dark:bg-[#0b1012] dark:border-[#cfcfcf]/40 dark:bg-opacity-75"
+        className="fixed top-4 left-1/2 h-[4.5rem] w-[calc(100%-2rem)] rounded-2xl border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:bg-950 dark:bg-transparent dark:border-[#cfcfcf]/40 dark:bg-opacity-75"
         initial={{ y: -100, x: "-50%", opacity: 0 }}
-        animate={{ y: 0, x: "-50%", opacity: 1 }}
+        animate={
+          introPhase >= 3
+            ? { y: 0, x: "-50%", opacity: 1 }
+            : { y: -100, x: "-50%", opacity: 0 }
+        }
         transition={{ duration: 0.5 }}
       ></motion.div>
 
@@ -51,31 +57,35 @@ export default function Header() {
       </button>
 
       {/* Navigasi untuk Desktop dengan animasi stagger */}
-      <nav className="hidden sm:flex fixed top-[1.7rem] left-1/2 h-[initial] -translate-x-1/2 py-0">
-        {/* 2. Ubah <ul> menjadi motion.ul dan terapkan varian */}
-        <motion.ul
-          className="flex w-[initial] flex-nowrap items-center justify-center gap-5"
-          variants={navContainerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {navLinks.map((link) => (
-            // 3. Terapkan varian ke motion.li
-            <motion.li
-              className="h-3/4 flex items-center justify-center relative"
-              key={link.hash}
-              variants={navLinkVariants}
-            >
-              <Link
-                className="flex w-full items-center justify-center px-3 py-3 text-gray-500 hover:text-[#7661cc] transition dark:text-gray-400 dark:hover:text-brand-light hover:scale-110 hover:[text-shadow:0_0_8px_rgba(105,140,226,0.7)]"
-                href={link.hash}
+      {introPhase >= 3 && (
+        <nav className="hidden sm:flex fixed top-[1.7rem] left-1/2 h-[initial] -translate-x-1/2 py-0">
+          {/* 2. Ubah <ul> menjadi motion.ul dan terapkan varian */}
+          <motion.ul
+            className="flex w-[initial] flex-nowrap items-center justify-center gap-5"
+            variants={navContainerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {navLinks.map((link) => (
+              // 3. Terapkan varian ke motion.li
+              <motion.li
+                className="h-3/4 flex items-center justify-center relative"
+                key={link.hash}
+                variants={navLinkVariants}
+                onMouseEnter={(e) => setHoveredElement(e.currentTarget)}
+                onMouseLeave={() => setHoveredElement(null)}
               >
-                {link.name}
-              </Link>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </nav>
+                <Link
+                  className="flex w-full items-center justify-center px-3 py-3 text-gray-500 hover:text-[#7661cc] transition dark:text-gray-400 dark:hover:text-brand-light hover:scale-110 hover:[text-shadow:0_0_8px_rgba(105,140,226,0.7)]"
+                  href={link.hash}
+                >
+                  {link.name}
+                </Link>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </nav>
+      )}
 
       <AnimatePresence>
         {isMenuOpen && (

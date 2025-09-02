@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import AnimatedBackground from "./components/AnimatedBackground";
 import MultiFollowCursor from "./components/MultiFollowCursor";
+import { CursorProvider } from "@/context/CursorContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,25 +15,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
         className={`${inter.className} bg-transparent text-white cursor-none`}
       >
-        <MultiFollowCursor />
-        {/* Lapisan 1: Background Animasi (di paling bawah) */}
-        <AnimatedBackground />
+        {/* 2. Bungkus semua komponen dengan CursorProvider */}
+        <CursorProvider>
+          <MultiFollowCursor />
+          <AnimatedBackground />
 
-        {/* Lapisan 2: Wrapper untuk semua konten (di atas background) */}
-        {/* 'position: relative' diperlukan untuk mengaktifkan 'z-index' */}
-        <Header />
-        <div className="relative z-10">
-          <main>{children}</main>{" "}
-          {/* Membungkus children dalam <main> adalah praktik yang baik */}
-        </div>
+          <div className="relative z-10">
+            <Header />
+            <main>{children}</main>
+          </div>
+        </CursorProvider>
       </body>
     </html>
   );

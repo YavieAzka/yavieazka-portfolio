@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"; // 1. Pastikan motion sudah diimpor
+import { delay, motion } from "framer-motion";
+import { useCursorContext } from "@/context/CursorContext";
 
 interface Greeting {
   text: string;
@@ -19,18 +20,10 @@ const greetings: Greeting[] = [
   { text: "مرحبا", lang: "Arabic" },
 ];
 
-// 2. Definisikan varian animasi untuk container dan setiap huruf
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.5, // Mulai animasi huruf setelah 0.5 detik
-      staggerChildren: 0.05, // Jeda 0.05 detik antar huruf
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
 };
-
 const childVariants = {
   hidden: { y: 20, opacity: 0 },
   visible: { y: 0, opacity: 1 },
@@ -38,45 +31,71 @@ const childVariants = {
 
 export default function Hero() {
   const [currentGreeting, setCurrentGreeting] = useState(0);
+  const { introPhase, setIntroPhase } = useCursorContext();
 
-  // 3. Pecah teks menjadi array karakter
-  const iAmText = "I am ".split("");
-  const nameText = "Yavie Azka.".split("");
-
+  // useEffect untuk mengatur alur waktu intro (tidak ada perubahan)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentGreeting((prev) => (prev + 1) % greetings.length);
-    }, 2000);
+    const timer2 = setTimeout(() => setIntroPhase(2), 1500);
+    const timer3 = setTimeout(() => setIntroPhase(3), 4000);
+    return () => {
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, [setIntroPhase]);
 
+  // useEffect untuk siklus sapaan (DENGAN PERBAIKAN)
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (introPhase === 3) {
+      setCurrentGreeting(1);
+      interval = setInterval(() => {
+        setCurrentGreeting((prev) => {
+          // Jika sapaan saat ini adalah yang terakhir di array,
+          // kembali ke sapaan kedua (index 1), bukan mencoba ke index selanjutnya.
+          if (prev === greetings.length - 1) {
+            return 1;
+          }
+          // Jika tidak, lanjutkan ke sapaan berikutnya.
+          return prev + 1;
+        });
+      }, 2000);
+    }
     return () => clearInterval(interval);
-  }, []);
+  }, [introPhase]);
 
   return (
     <section className="min-h-screen flex items-center justify-center text-white">
       <div className="text-center animate-fadeIn px-4 relative">
-        <h1
-          key={currentGreeting}
-          className="text-9xl sm:text-10xl font-extrabold font-inter mb-10 animate-slideText drop-shadow-md"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: introPhase >= 1 ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
         >
-          {greetings[currentGreeting].text}
-        </h1>
+          <h1
+            key={currentGreeting}
+            className="text-9xl sm:text-10xl font-extrabold font-inter mb-10 animate-slideText drop-shadow-md"
+          >
+            {/* Logika ini sudah benar untuk permintaan Anda */}
 
-        {/* 4. Terapkan animasi menggunakan motion component */}
+            {introPhase < 3
+              ? greetings[0].text
+              : greetings[currentGreeting].text}
+          </h1>
+        </motion.div>
+
         <motion.p
           className="text-2xl sm:text-3xl font-medium font-inter drop-shadow-md"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={introPhase >= 2 ? "visible" : "hidden"}
         >
-          {/* Render "I am " */}
-          {iAmText.map((char, index) => (
+          {"I am ".split("").map((char, index) => (
             <motion.span key={index} variants={childVariants}>
               {char}
             </motion.span>
           ))}
-          {/* Render "Yavie Azka." dengan style berbeda */}
           <span className="gradient-text">
-            {nameText.map((char, index) => (
+            {"Yavie Azka.".split("").map((char, index) => (
               <motion.span key={index} variants={childVariants}>
                 {char}
               </motion.span>

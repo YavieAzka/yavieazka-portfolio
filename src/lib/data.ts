@@ -51,7 +51,7 @@ export const EXPERIENCE = [
     company: "MasterTPB",
     location: "Bandung, West Java",
     role: "Academic Tutor - Calculus & Computational Thinking",
-    period: "August 2025 - Present",
+    period: "September 2025 - Present",
     description:
       "Providing guidance and instruction for first-year students (TPB) in fundamental courses. Responsible for explaining core concepts, assisting in problem-solving, and strengthening students’ algorithmic and mathematical understanding.",
     stack: [
@@ -66,7 +66,7 @@ export const EXPERIENCE = [
     company: "PT. Anugerah Wahyudi Sejahtera",
     location: "West Sumatera",
     role: "Lead Full-Stack Developer (Independent Project)",
-    period: "2025 – Present",
+    period: "2025 - Present",
     description:
       "Developed a full-stack web analytics platform from scratch for a major FMCG distributor to replace manual Excel-based reporting. Engineered an ETL pipeline to process 5M+ sales records, built a dynamic backend API, and developed an interactive frontend dashboard.",
     stack: [
@@ -89,13 +89,13 @@ export const PROJECTS = [
     tags: ["Algorithm", "Python", "Heuristics", "Graph Theory", "Numpy"],
   },
   {
-    title: "Nimons Hospital – C-based Hospital Management System",
+    title: "Nimons Hospital - C-based Hospital Management System",
     description:
       "Built a modular CLI-based hospital system in C featuring role-based access, dynamic queues, and persistent storage using custom data structures and CSV parsers.",
     tags: ["C", "Data Structures", "CLI", "System Design"],
   },
   {
-    title: "Pokemon Game – Prolog Edition",
+    title: "Pokemon Game - Prolog Edition",
     description:
       "Developed a turn-based CLI Pokémon RPG in Prolog, implementing map exploration, battle mechanics, and a skill system using dynamic predicates and rule-based programming.",
     tags: ["Prolog", "Logic Programming", "Game Dev", "CLI"],
@@ -104,9 +104,33 @@ export const PROJECTS = [
 
 export const ACHIEVEMENTS = [
   {
+    year: 2022,
+    competition: "National Informatics Olympiad",
+    university: "Lustrum Universitas Andalas",
+    award: "2nd Winner",
+  },
+  {
+    year: 2022,
+    competition: "Sumatra Regional Olympiad",
+    university: "SMAPSIC XVII SMAN 1 Padang",
+    award: "2nd Winner",
+  },
+  {
+    year: 2022,
+    competition: "Provincial Informatics Olympiad",
+    university: "Tensai 11th SMAN 10 Padang",
+    award: "3rd Winner",
+  },
+  {
+    year: 2022,
+    competition: "Provincial English Debate Competition",
+    university: "SMAK Kalam Kudus Padang",
+    award: "2nd Winner",
+  },
+  {
     year: 2023,
     competition: "National Mathematics Challenge",
-    university: "Universitas Andalas",
+    university: "PSB Universitas Andalas",
     award: "1st Winner",
   },
   {
@@ -116,14 +140,45 @@ export const ACHIEVEMENTS = [
     award: "1st Winner",
   },
   {
-    year: 2022,
-    competition: "National Informatics Olympiad",
-    university: "Lustrum Universitas Andalas",
+    year: 2023,
+    competition: "Provincial Informatics Olympiad",
+    university: "Tensai 12th SMAN 10 Padang",
+    award: "1st Winner",
+  },
+  {
+    year: 2023,
+    competition: "Sumatra Regional Olympiad",
+    university: "SMAPSIC XVIII SMAN 1 Padang",
+    award: "4th Winner",
+  },
+  {
+    year: 2023,
+    competition: "Provincial Informatics Olympiad",
+    university: "SMAN 1 Gunung Talang",
     award: "2nd Winner",
   },
   {
     year: 2024,
-    competition: "English Debate Competition",
+    competition: "National Informatics Olympiad",
+    university: "Tensai 13th SMAN 10 Padang",
+    award: "2nd Winner",
+  },
+
+  {
+    year: 2024,
+    competition: "Provincial Informatics Olympiad",
+    university: "Festival Smantripa IX SMAN 3 Painan",
+    award: "2nd Winner",
+  },
+  {
+    year: 2024,
+    competition: "Provincial Informatics Olympiad",
+    university: "Fesmative 2nd SMAN 4 Padang",
+    award: "3rd Winner",
+  },
+  {
+    year: 2024,
+    competition: "Provincial English Debate Competition",
     university: "SMAN 3 Bukittinggi",
     award: "1st Winner",
   },

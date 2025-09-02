@@ -1,0 +1,17 @@
+.spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Agar tidak menghalangi klik */
+  z-index: -9;
+
+  /* Ini adalah inti dari efeknya: gradasi radial dari atas tengah */
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    /* Bentuk oval, dari tengah atas (x=50%, y=0%) */ rgba(105, 140, 226, 0.2),
+    /* Warna aksen Anda, semi-transparan */ transparent 70%
+      /* Memudar menjadi transparan total di 70% radius */
+  );
+}
